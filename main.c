@@ -7,6 +7,9 @@
 #include <ctype.h>
 #include "img.c"
 
+//Function to determine if a string is a number
+//Input: the string to analyze
+//Output: -1 if it isn't a number, 1 in the contrary case
 int isNumeric(char* str)
 {
 	int len = strlen(str);
@@ -20,6 +23,9 @@ int isNumeric(char* str)
 	return 1;
 }
 
+//Function that reads and stores the filter mask for the image
+//Input: The name of the file with the mask, the matrix to store the kernel
+//Output: -1 if it failed reading the file, 1 if it's successful
 int readMaskFile(char *fileName, int **kernel){
 
     int i;

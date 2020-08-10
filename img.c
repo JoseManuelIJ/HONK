@@ -11,6 +11,9 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+//Stores the RGB values of a pixel in a matrix in a struct
+//Input: Pointer to the img struct, the raw img data
+//Output: None
 void getImageData(Img *actualImage, unsigned char* img){
     unsigned char *p;
     int i, j;
@@ -30,10 +33,17 @@ void getImageData(Img *actualImage, unsigned char* img){
     }
 }
 
+//Retuns the r, g or b value of a pixel in the image coordinate [row, column] given a img struct
+//Input: A pointer to the img struct, the row and column of the pixel to get it's value and a char ('r', 'g' or 'b')
+//Output: the r, g or b value of the pixel
 int getPixelRGBValues(Img * img, int row, int column, char rgb){
-    int pixelValue = (rgb == 'r' ? img->pixelMatrix[i][j] : (rgb == 'g' ? img->pixelMatrix[i][j + 1] : img->pixelMatrix[i][j+2]));
+    int pixelValue = (rgb == 'r' ? img->pixelMatrix[row][j * 3] : (rgb == 'g' ? img->pixelMatrix[row][(j * 3) + 1] : (rgb == 'b' ? img->pixelMatrix[row][(j * 3) +2] : 0)) );
+    return pixelValue;
 }
 
+//Function where the image processing begins, including pooling, mask filtering, image binarization and classificcation
+//Input: the filename of the image to start processing it
+//Output: None, even though the classification process should print the image results
 void imageProcessingMain(char* fileName){
     Img actualImage;
     //Read
@@ -44,6 +54,9 @@ void imageProcessingMain(char* fileName){
     //Profit!
 }
 
+//Function that reads and oipens the image file to extract the data and assign it to an image struct
+//Input: Pointer to the image struct and the filename
+//Output: The image data (size, color channels, pixel values) stored in the struct
 void readImage(Img* actualImage, char* fileName){
     int width, height, channels;
     unsigned char *img = stbi_load(fileName, &width, &height, &channels, 0);
