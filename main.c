@@ -37,6 +37,7 @@ int readMaskFile(char *fileName, int **kernel){
 
     if(!fp){
         printf("File not found! (Actual file name input: %s)", fileName);
+        fclose(fp);
         return -1;
     }
 
@@ -45,12 +46,11 @@ int readMaskFile(char *fileName, int **kernel){
             sscanf(buffer, "%d %d %d", &kernel[i][0], &kernel[i][1], &kernel[i][2]);    
         }
     }
-
+    fclose(fp);
     return 1;
 }
 
 int main(int argc, char *argv[]){
-
     int opt, c, cIsValid = 0, u, uIsValid = 0, n, nIsValid = 0, kernelIsValid = 0, showResults = 0;
     int **kernel = (int**)malloc(sizeof(int*) * 3);
     for(int i = 0; i < 3; i++){
@@ -61,7 +61,6 @@ int main(int argc, char *argv[]){
     strcpy(imgString, "imagen_");
     char *jpgExtension = (char*) malloc(sizeof(char) * 5);
     strcpy(jpgExtension, ".jpg");
-
     while((opt = getopt(argc, argv, ":c:u:n:m:b")) != -1){
         switch(opt){            
 
@@ -139,7 +138,6 @@ int main(int argc, char *argv[]){
                 break;
         }
     }
-
     if(cIsValid == 1 && nIsValid == 1 && uIsValid == 1 && kernelIsValid == 1){
         int i;
         for(i =1 ; i <= c; i++){

@@ -41,7 +41,8 @@ void imageProcessingMain(char* fileName){
     Img actualImage;
     //Read
     readImage(&actualImage, fileName);
-    greyScale(&actualImage);
+    printf("entrando a gray\n");
+    grayScale(&actualImage);
     //Apply bunch of stuff
     //???
     //Profit!
