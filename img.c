@@ -37,7 +37,7 @@ void getImageData(Img *actualImage, unsigned char* img){
 //Input: A pointer to the img struct, the row and column of the pixel to get it's value and a char ('r', 'g' or 'b')
 //Output: the r, g or b value of the pixel
 int getPixelRGBValues(Img * img, int row, int column, char rgb){
-    int pixelValue = (rgb == 'r' ? img->pixelMatrix[row][j * 3] : (rgb == 'g' ? img->pixelMatrix[row][(j * 3) + 1] : (rgb == 'b' ? img->pixelMatrix[row][(j * 3) +2] : 0)) );
+    int pixelValue = (rgb == 'r' ? img->pixelMatrix[row][column * 3] : (rgb == 'g' ? img->pixelMatrix[row][(column * 3) + 1] : (rgb == 'b' ? img->pixelMatrix[row][(column * 3) +2] : 0)) );
     return pixelValue;
 }
 
