@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <ctype.h>
 #include "img.c"
+#include "functions.h"
 
 //Function to determine if a string is a number
 //Input: the string to analyze

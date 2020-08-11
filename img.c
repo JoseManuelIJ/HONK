@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "structs.h"
 #include "img.h"
+#include "functions.h"
 
 //stb_image libraries
 #define STB_IMAGE_IMPLEMENTATION
@@ -48,7 +49,7 @@ void imageProcessingMain(char* fileName){
     Img actualImage;
     //Read
     readImage(&actualImage, fileName);
-
+    greyScale(&actualImage);
     //Apply bunch of stuff
     //???
     //Profit!
