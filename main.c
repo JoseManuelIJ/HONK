@@ -5,8 +5,8 @@
 #include <string.h>
 #include <errno.h>
 #include <ctype.h>
-#include "img.c"
-#include "functions.h"
+#include "structs.h"
+#include "img.h"
 
 //Function to determine if a string is a number
 //Input: the string to analyze
@@ -140,7 +140,7 @@ int main(int argc, char *argv[]){
         }
     }
 
-    if(cIsValid == 1 && nIsValid == 1 && uIsValid == 1){
+    if(cIsValid == 1 && nIsValid == 1 && uIsValid == 1 && kernelIsValid == 1){
         int i;
         for(i =1 ; i <= c; i++){
             sprintf(actualImageNumber, "%d", i); //Convert image number to string
@@ -149,6 +149,9 @@ int main(int argc, char *argv[]){
             printf("Processing %s\n", imgString);
             //Process the image
             imageProcessingMain(imgString);
+            if(showResults == 1){
+                printf("Resultado de %s es:  \n", imgString);
+            }
             strcpy(imgString, "imagen_");//Set imgString back to the beggining again
         }
     }

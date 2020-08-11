@@ -10,9 +10,6 @@ typedef struct
     size_t dataSize;
     unsigned char *data;
     unsigned char **pixelMatrix;
-    //float ** image2;
-    //float **poolImg;
-    //unsigned int poolWidth;
-   // unsigned int poolHeight;
+    float **grayMatrix;
 }Img;
 #endif

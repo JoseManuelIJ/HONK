@@ -1,4 +1,4 @@
-//img.h
+//#include "structs.h"
 #ifndef _img_h
 #define _img_h
 

@@ -34,14 +34,6 @@ void getImageData(Img *actualImage, unsigned char* img){
     }
 }
 
-//Retuns the r, g or b value of a pixel in the image coordinate [row, column] given a img struct
-//Input: A pointer to the img struct, the row and column of the pixel to get it's value and a char ('r', 'g' or 'b')
-//Output: the r, g or b value of the pixel
-int getPixelRGBValues(Img * img, int row, int column, char rgb){
-    int pixelValue = (rgb == 'r' ? img->pixelMatrix[row][column * 3] : (rgb == 'g' ? img->pixelMatrix[row][(column * 3) + 1] : (rgb == 'b' ? img->pixelMatrix[row][(column * 3) +2] : 0)) );
-    return pixelValue;
-}
-
 //Function where the image processing begins, including pooling, mask filtering, image binarization and classificcation
 //Input: the filename of the image to start processing it
 //Output: None, even though the classification process should print the image results
@@ -75,6 +67,10 @@ void readImage(Img* actualImage, char* fileName){
     actualImage->pixelMatrix = (unsigned char**) malloc(sizeof(unsigned char*) * height);
     for(int i = 0; i < height; i++){
         actualImage->pixelMatrix[i] = (unsigned char*) malloc(sizeof(unsigned char) * width * channels);
+    }
+    actualImage->grayMatrix = (float **) malloc(sizeof(float*) * height);
+    for(int i = 0; i < width; i++){
+        actualImage->grayMatrix[i] = (float*) malloc(sizeof(float) * height);
     }
 
     getImageData(actualImage, img);
