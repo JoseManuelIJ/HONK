@@ -13,10 +13,11 @@ int getPixelRGBValues(Img * img, int row, int column, char rgb){
     return pixelValue;
 }
 
+//applies the gray scale to the image in the input
+//Input: A pointer to the img struct
 void grayScale(Img* actualImage){
     int i,j,Y,r,g,b;
     int width = actualImage->width, height = actualImage->height;
-    //channels = actualImage->channels;
     printf("hola");
     for(i=0; i< height; i++)
     {
@@ -28,11 +29,27 @@ void grayScale(Img* actualImage){
             b=getPixelRGBValues(actualImage,i,j,'b');
             Y=r*0.3 + g*0.59 + b*0.11;
             actualImage->grayMatrix[i][j] =Y;
-            printf("wena choro %f\n",actualImage->grayMatrix[i][j]);
         }
     }
 }
-void laplacianation()
+int valor(Img* actualImage,int i,int j) 
+{
+    int sum;
+    int MC[3][3]= {{0,1,0},
+        {1,-4,1},
+        {0,1,0}    
+        };
+    sum=0;
+    for(int f=0;f<3;f++)
+    {
+        for(int c=0;c<3;c++)
+        {
+            sum=sum+actualImage->[i+f-1][j+c-1] * MC[f][c];
+        }
+    }
+    return sum;
+}
+void laplace(Img* actualImage, int** kernel)
 {
     
 }

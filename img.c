@@ -41,7 +41,6 @@ void imageProcessingMain(char* fileName, int** kernel){
     Img actualImage;
     //Read
     readImage(&actualImage, fileName);
-    printf("entrando a gray\n");
     grayScale(&actualImage);
     //Apply bunch of stuff
     //???
