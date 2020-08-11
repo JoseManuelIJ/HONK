@@ -37,7 +37,7 @@ void getImageData(Img *actualImage, unsigned char* img){
 //Function where the image processing begins, including pooling, mask filtering, image binarization and classificcation
 //Input: the filename of the image to start processing it
 //Output: None, even though the classification process should print the image results
-void imageProcessingMain(char* fileName){
+void imageProcessingMain(char* fileName, int** kernel){
     Img actualImage;
     //Read
     readImage(&actualImage, fileName);

@@ -146,7 +146,7 @@ int main(int argc, char *argv[]){
             strcat(imgString, jpgExtension); //"Append the .jpg extension"
             printf("Processing %s\n", imgString);
             //Process the image
-            imageProcessingMain(imgString);
+            imageProcessingMain(imgString, kernel);
             if(showResults == 1){
                 printf("Resultado de %s es:  \n", imgString);
             }
