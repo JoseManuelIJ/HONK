@@ -11,5 +11,7 @@ typedef struct
     unsigned char *data;
     unsigned char **pixelMatrix;
     float **grayMatrix;
+    float **laplacedMatrix;
+    float **binaryMatrix;
 }Img;
 #endif

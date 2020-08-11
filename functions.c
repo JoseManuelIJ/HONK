@@ -44,7 +44,7 @@ int valor(Img* actualImage,int i,int j)
     {
         for(int c=0;c<3;c++)
         {
-            sum=sum+actualImage->[i+f-1][j+c-1] * MC[f][c];
+            /*sum=sum+actualImage->[i+f-1][j+c-1] * MC[f][c]*/;
         }
     }
     return sum;

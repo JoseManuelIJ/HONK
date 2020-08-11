@@ -69,8 +69,12 @@ void readImage(Img* actualImage, char* fileName){
         actualImage->pixelMatrix[i] = (unsigned char*) malloc(sizeof(unsigned char) * width * channels);
     }
     actualImage->grayMatrix = (float **) malloc(sizeof(float*) * height);
+    actualImage->laplacedMatrix = (float**) malloc(sizeof(float*) * height);
+    actualImage->binaryMatrix = (float**) malloc(sizeof(float*) * height);
     for(int i = 0; i < width; i++){
-        actualImage->grayMatrix[i] = (float*) malloc(sizeof(float) * height);
+        actualImage->grayMatrix[i] = (float*) malloc(sizeof(float*) * width);
+        actualImage->laplacedMatrix[i] = (float*) malloc(sizeof(float*) * width);
+        actualImage->binaryMatrix[i] = (float*) malloc(sizeof(float*) * width);
     }
 
     getImageData(actualImage, img);
