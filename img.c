@@ -42,6 +42,8 @@ void imageProcessingMain(char* fileName, int** kernel){
     //Read
     readImage(&actualImage, fileName);
     grayScale(&actualImage);
+    laplace(&actualImage,kernel);
+    binarization(&actualImage, 150);
     //Apply bunch of stuff
     //???
     //Profit!

@@ -17,8 +17,8 @@ int getPixelRGBValues(Img * img, int row, int column, char rgb){
 //Input: A pointer to the img struct
 void grayScale(Img* actualImage){
     int i,j,Y,r,g,b;
-    int width = actualImage->width, height = actualImage->height;
-    printf("hola");
+    int width = actualImage->width,
+    height = actualImage->height;
     for(i=0; i< height; i++)
     {
 
@@ -32,24 +32,86 @@ void grayScale(Img* actualImage){
         }
     }
 }
-int valor(Img* actualImage,int i,int j) 
+//Returns the value of the corresponding convolution 
+//
+int valor(Img* actualImage,int** kernel,int i,int j) 
 {
     int sum;
-    int MC[3][3]= {{0,1,0},
-        {1,-4,1},
-        {0,1,0}    
-        };
     sum=0;
     for(int f=0;f<3;f++)
     {
         for(int c=0;c<3;c++)
         {
-            /*sum=sum+actualImage->[i+f-1][j+c-1] * MC[f][c]*/;
+            sum=sum+actualImage->grayMatrix[i+f-1][j+c-1] * kernel[f][c];
         }
     }
     return sum;
 }
+
 void laplace(Img* actualImage, int** kernel)
 {
-    
+    int i,j,width,height;
+    width = actualImage->width,
+    height = actualImage->height;
+    for( i=0;i<height;i++)
+   {
+       for( j=0;j<width;j++)
+       {
+           if (i<1 || j<1 || (i>height-2) || (j>width-2))
+           {
+               actualImage->laplacedMatrix[i][j]=0;
+           }
+           else
+           {
+               actualImage->laplacedMatrix[i][j]=valor(actualImage,kernel,i,j);
+           }
+       }
+   }
+}
+void binarization(Img* actualImage, int threshold)
+{
+    int i,j,width,height;
+    width = actualImage->width,
+    height = actualImage->height;
+    for( i=0;i<height;i++)
+   {
+       for( j=0;j<width;j++)
+       {
+           if(actualImage->laplacedMatrix[i][j] > threshold )
+           {
+               actualImage->binaryMatrix[i][j]=255;
+           }
+           else
+           {
+               actualImage->binaryMatrix[i][j]=0;
+           }
+           
+       }
+   }
+}
+
+void Classification(Img* actualImage, int threshold)
+{
+    int i,j,width,height, black;
+    width = actualImage->width,
+    height = actualImage->height;
+    for( i=0;i<height;i++)
+   {
+       for( j=0;j<width;j++)
+       {
+           if (actualImage->binaryMatrix[i][j]==0)
+           {
+               black++;
+           }           
+       }
+   }
+   if(black<threshold)
+   {
+       printf("no");
+   }
+   else
+   {
+       printf("yes");
+   }
+   
 }
