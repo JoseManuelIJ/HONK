@@ -83,7 +83,7 @@ int main(int argc, char *argv[]){
             //Pixel value tresshold for binarization
             case 'u':
                 if(isNumeric(optarg) == -1){
-                    printf("The -u flag (pixel value tresshold) is not numeric!\n");
+                    printf("The -u flag (pixel value treshold) is not numeric!\n");
                     exit(1);
                 }
 
@@ -99,13 +99,13 @@ int main(int argc, char *argv[]){
             //Tresshold for classification
             case 'n':
                 if(isNumeric(optarg) == -1){
-                    printf("The -n flag (percentage of black pixels tresshold) is not numeric!\n");
+                    printf("The -n flag (percentage of black pixels treshold) is not numeric!\n");
                     exit(1);
                 }
 
                 n = atoi(optarg);
 
-                if(u < 0 || u > 100){
+                if(n < 0 || n > 100){
                     printf("The -n flag (percentage of black pixels tresshold) must be between 0 and 100 (actual value: %d)\n", n);
                     exit(1);
                 }
@@ -144,12 +144,8 @@ int main(int argc, char *argv[]){
             sprintf(actualImageNumber, "%d", i); //Convert image number to string
             strcat(imgString, actualImageNumber); //Append it to the expected filename format "imagen_"
             strcat(imgString, jpgExtension); //"Append the .jpg extension"
-            printf("Processing %s\n", imgString);
             //Process the image
-            imageProcessingMain(imgString, kernel);
-            if(showResults == 1){
-                printf("Resultado de %s es:  \n", imgString);
-            }
+            imageProcessingMain(imgString, kernel, u, n, showResults);
             strcpy(imgString, "imagen_");//Set imgString back to the beggining again
         }
     }

@@ -8,7 +8,6 @@ typedef struct
     unsigned int height;
     unsigned int channels;
     size_t dataSize;
-    unsigned char *data;
     unsigned char **pixelMatrix;
     float **grayMatrix;
     float **laplacedMatrix;

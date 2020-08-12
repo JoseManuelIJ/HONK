@@ -3,8 +3,6 @@
 #include "structs.h"
 #include "functions.h"
 
-
-
 //Retuns the r, g or b value of a pixel in the image coordinate [row, column] given a img struct
 //Input: A pointer to the img struct, the row and column of the pixel to get it's value and a char ('r', 'g' or 'b')
 //Output: the r, g or b value of the pixel
@@ -90,13 +88,13 @@ void binarization(Img* actualImage, int threshold)
    }
 }
 
-void Classification(Img* actualImage, int threshold)
+void classification(Img* actualImage, int threshold, int showResults, char* fileName)
 {
-    int i,j,width,height, black;
+    int i,j,width,height, black, blackPercentage;
     width = actualImage->width,
     height = actualImage->height;
     for( i=0;i<height;i++)
-   {
+    {
        for( j=0;j<width;j++)
        {
            if (actualImage->binaryMatrix[i][j]==0)
@@ -104,14 +102,16 @@ void Classification(Img* actualImage, int threshold)
                black++;
            }           
        }
+    }
+    blackPercentage = 100 * black / (width * height);
+   if(showResults == 1){
+       if(blackPercentage<threshold)
+        {
+            printf("%s: No (black pixels = %d)\n", fileName, black);
+        }
+        else
+        {
+          printf("%s: Yes (black pixels = %d)\n", fileName, black);
+        }
    }
-   if(black<threshold)
-   {
-       printf("no");
-   }
-   else
-   {
-       printf("yes");
-   }
-   
 }
